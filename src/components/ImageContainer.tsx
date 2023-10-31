@@ -8,7 +8,7 @@ export default function ImgBox({ ...props }: Porps) {
       <img
         src={props.img}
         alt={props.img}
-        className="w-[400px] h-[400px] rounded-md"
+        className="rounded-md object-cover bg-white"
       ></img>
     </div>
   );
