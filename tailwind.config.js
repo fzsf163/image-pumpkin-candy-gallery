@@ -7,7 +7,7 @@ export default {
         "bg-color": "var(--bg-color)",
         "text-color": "var(--text-color)",
         "option-color": "var(--option-color)",
-        "hover-border": "var(--hover-border)",
+        "border-color": "var(--hover-border)",
       },
     },
   },
