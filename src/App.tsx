@@ -7,7 +7,7 @@ function App() {
   let imglist = [...imgList];
   const [items, setItems] = useState(imglist);
   const controls = useDragControls();
-  const constraintsRef = useRef(null)
+  const constraintsRef = useRef(null);
 
   return (
     <section className="h-[100%] bg-bg-color text-text-color font-[system-ui]  text-center space-y-10 box-border">
@@ -30,9 +30,18 @@ function App() {
               drag
               dragControls={controls}
               dragElastic={0}
-              className="relative w-[30dvh] h-fit first:col-span-2 first:row-span-2 first:w-full "
+              className="relative w-[30dvh] h-fit first:col-span-2 first:row-span-2 first:w-full rounded"
               dragSnapToOrigin={true}
               dragConstraints={constraintsRef}
+              initial={{
+                padding: 0,
+                opacity:1
+              }}
+              whileHover={{
+                padding: 10,
+                transition: { duration: 0.3, ease: "easeInOut" },
+                opacity:0.8
+              }}
             >
               <ImgBox key={item} img={item}></ImgBox>
               <span
@@ -43,6 +52,14 @@ function App() {
             </Reorder.Item>
           );
         })}
+        <div className="border h-full">
+          <input
+            type="file"
+            name="imageUpload"
+            id="imgUp"
+            className="mx-auto"
+          />
+        </div>
       </Reorder.Group>
 
       {/* footer */}
