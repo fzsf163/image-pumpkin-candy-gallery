@@ -1,4 +1,4 @@
-import { Reorder, motion, useDragControls } from "framer-motion";
+import { Reorder, useDragControls } from "framer-motion";
 import "./App.css";
 import { imgList } from "./assets";
 import { useState } from "react";
