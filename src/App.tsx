@@ -1,13 +1,9 @@
-import { Reorder, useDragControls } from "framer-motion";
 import "./App.css";
 import { imgList } from "./assets";
-import { useRef, useState } from "react";
-import ImgBox from "./components/ImageContainer";
+import GridGallery from "./components/GridGallery";
+
 function App() {
-  let imglist = [...imgList];
-  const [items, setItems] = useState(imglist);
-  const controls = useDragControls();
-  const constraintsRef = useRef(null);
+  let imglist: string[] = [...imgList];
 
   return (
     <section className="h-[100%] bg-bg-color text-text-color font-[system-ui]  text-center space-y-10 box-border">
@@ -16,52 +12,9 @@ function App() {
         Pumpkin Image Gallery
       </h1>
       {/* render images */}
-      <Reorder.Group
-        values={items}
-        onReorder={setItems}
-        className="grid grid-cols-5 justify-items-center items-center w-[80%] mx-auto border border-border-color rounded-md p-3 gap-5"
-        ref={constraintsRef}
-      >
-        {items.map((item) => {
-          return (
-            <Reorder.Item
-              value={item}
-              key={item}
-              drag
-              dragControls={controls}
-              dragElastic={0}
-              className="relative w-[30dvh] h-fit first:col-span-2 first:row-span-2 first:w-full rounded"
-              dragSnapToOrigin={true}
-              dragConstraints={constraintsRef}
-              initial={{
-                padding: 0,
-                opacity:1
-              }}
-              whileHover={{
-                padding: 10,
-                transition: { duration: 0.3, ease: "easeInOut" },
-                opacity:0.8
-              }}
-            >
-              <ImgBox key={item} img={item}></ImgBox>
-              <span
-                className="cursor-move select-none text-black p-6 bg-transparent absolute top-0 left-0 w-full h-full"
-                onPointerDown={(e) => controls.start(e)}
-                style={{ touchAction: "none" }}
-              ></span>
-            </Reorder.Item>
-          );
-        })}
-        <div className="border h-full">
-          <input
-            type="file"
-            name="imageUpload"
-            id="imgUp"
-            className="mx-auto"
-          />
-        </div>
-      </Reorder.Group>
-
+      <section>
+        <GridGallery imgs={imglist}></GridGallery>
+      </section>
       {/* footer */}
       <footer className="border-t-2 p-6 border-border-color">
         &copy; FancyFinger
