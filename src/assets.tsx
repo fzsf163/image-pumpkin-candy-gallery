@@ -10,7 +10,7 @@ import img9 from "./assets/image-9.webp";
 import img10 from "./assets/image-10.jpeg";
 import img11 from "./assets/image-11.jpeg";
 
-export let imgList = [
+export const imgList = [
   img1,
   img2,
   img3,
