@@ -2,20 +2,42 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 type Props = {
   img: string;
+  setChkedList: React.Dispatch<React.SetStateAction<string[]>>;
+  chkedList: string[];
 };
-export default function ImgBox({ img }: Props) {
+export default function ImgBox({ img, setChkedList, chkedList }: Props) {
   const [check, setCheck] = useState(false);
   const [isHover, setHover] = useState(false);
+
+  const addTheCheckList = (img: string) => {
+    chkedList.push(img);
+    const arrFiltered = Array.from(new Set(chkedList));
+    setChkedList(arrFiltered);
+  };
+  const dltTheCheckList = (img: string) => {
+    const refinedArr = chkedList.filter((item) => {
+      return item !== img;
+    });
+    setChkedList(refinedArr);
+  };
+
+  const adjustList = (img: string) => {
+    const seeExist = chkedList.includes(img);
+    seeExist ? dltTheCheckList(img) : addTheCheckList(img);
+  };
   return (
     <div className="relative overflow-hidden rounded-lg">
       <motion.img
-        onTap={() => setCheck(!check)}
+        onTap={() => {
+          setCheck((x) => !x);
+          adjustList(img);
+        }}
         whileTap={{
           scale: 0.8,
         }}
         initial={{
           opacity: 1,
-          scale:1
+          scale: 1,
         }}
         onHoverStart={() => setHover(true)}
         onHoverEnd={() => setHover(false)}
@@ -40,8 +62,7 @@ export default function ImgBox({ img }: Props) {
       >
         <input
           checked={check}
-          value={check ? 1 : 0}
-          onChange={() => setCheck(!check)}
+          onChange={(x) => setCheck(!x)}
           type="checkbox"
           name="imgChk"
           id="imgChk"
