@@ -3,6 +3,7 @@ import SortableList, { SortableItem } from "react-easy-sort";
 import arrayMove from "array-move";
 import "../App.css";
 import ImgBox from "./ImgBox";
+import { AnimatePresence, motion } from "framer-motion";
 type Props = {
   imgs: string[];
 };
@@ -24,8 +25,26 @@ export default function GridGallery({ imgs }: Props) {
     }
   }, []);
   return (
-    <section>
-      <div>{chkedList.length > 0 && <p>Delete</p>}</div>
+    <motion.section layout className="relative pt-10">
+      <AnimatePresence>
+        {chkedList.length > 0 && (
+          <motion.p
+            key={"deleteDiv"}
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+            className=" absolute right-[10dvw] -top-3 border border-border-color px-3 py-2 rounded-lg w-fit mx-auto mb-5 "
+          >
+            Delete {chkedList.length} items
+          </motion.p>
+        )}
+      </AnimatePresence>
       <SortableList
         onSortEnd={onSortEnd}
         draggedItemClassName="select-none pointer-events-none"
@@ -43,7 +62,11 @@ export default function GridGallery({ imgs }: Props) {
                   key={index}
                   className="w-[15dvw] rounded-md first:row-span-2 first:col-span-2 first:w-full first:h-full cursor-move"
                 >
-                  <ImgBox img={img}  setChkedList={setChkedList} chkedList={chkedList}></ImgBox>
+                  <ImgBox
+                    img={img}
+                    setChkedList={setChkedList}
+                    chkedList={chkedList}
+                  ></ImgBox>
                 </div>
               </SortableItem>
             );
@@ -53,6 +76,6 @@ export default function GridGallery({ imgs }: Props) {
           </div>
         </div>
       </SortableList>
-    </section>
+    </motion.section>
   );
 }
