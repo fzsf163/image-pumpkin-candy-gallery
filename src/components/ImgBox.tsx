@@ -7,20 +7,21 @@ export default function ImgBox({ img }: Props) {
   const [check, setCheck] = useState(false);
   const [isHover, setHover] = useState(false);
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden rounded-lg">
       <motion.img
         onTap={() => setCheck(!check)}
         whileTap={{
-          scale: 0.6,
+          scale: 0.8,
         }}
         initial={{
           opacity: 1,
+          scale:1
         }}
         onHoverStart={() => setHover(true)}
         onHoverEnd={() => setHover(false)}
         whileHover={{
           opacity: 0.7,
-          scale: 0.96,
+          scale: 1.1,
         }}
         layoutId={img}
         id="imgContainer"
@@ -29,7 +30,7 @@ export default function ImgBox({ img }: Props) {
         className="rounded-md object-cover bg-white"
       ></motion.img>
       <motion.span
-        className="accent-gray-400 absolute top-0 left-0 m-4"
+        className=" absolute top-0 left-0 m-4 first:m-4"
         initial={{
           opacity: 0,
         }}
