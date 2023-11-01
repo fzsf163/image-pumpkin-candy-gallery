@@ -3,8 +3,6 @@ import { imgList } from "./assets";
 import GridGallery from "./components/GridGallery";
 
 function App() {
-  let imglist: string[] = [...imgList];
-
   return (
     <section className="h-[100%] bg-bg-color text-text-color font-[system-ui]  text-center space-y-10 box-border">
       {/* title */}
@@ -13,7 +11,7 @@ function App() {
       </h1>
       {/* render images */}
       <section>
-        <GridGallery imgs={imglist}></GridGallery>
+        <GridGallery imgs={imgList}></GridGallery>
       </section>
       {/* footer */}
       <footer className="border-t-2 p-6 border-border-color">
