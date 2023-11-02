@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SortableList, { SortableItem } from "react-easy-sort";
 import arrayMove from "array-move";
 import "../App.css";
@@ -18,15 +18,16 @@ export default function GridGallery({ imgs }: Props) {
 
   const onSortEnd = (oldIndex: number, newIndex: number) => {
     setImgBag((imgBag) => arrayMove(imgBag, oldIndex, newIndex));
-    localStorage.setItem("items", JSON.stringify(imgBag));
+    // localStorage.setItem("items", JSON.stringify(imgBag));
   };
 
-  useEffect(() => {
-    const itemsbox = JSON.parse(localStorage.getItem("items") || "");
-    if (itemsbox) {
-      setImgBag(itemsbox);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const itemsbox = JSON.parse(localStorage.getItem("items") || "");
+  //   if (itemsbox) {
+  //     setImgBag(itemsbox);
+  //   }
+
+  // }, []);
   return (
     <motion.section layout className="relative">
       <AnimatePresence>
@@ -35,15 +36,15 @@ export default function GridGallery({ imgs }: Props) {
             key={"deleteDiv"}
             initial={{
               opacity: 0,
-              paddingTop:0,
+              paddingTop: 0,
             }}
             animate={{
               opacity: 1,
-              paddingTop:40,
+              paddingTop: 40,
             }}
             exit={{
               opacity: 0,
-              paddingTop:0,
+              paddingTop: 0,
             }}
             className=" absolute left-1 sm:left-3 md:left-2 lg:-right-[84dvw]  -top-6 px-3 py-2 rounded-lg w-fit mx-auto mb-5  flex  flex-col items-center justify-around gap-5 z-50"
           >
