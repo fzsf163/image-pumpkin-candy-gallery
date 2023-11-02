@@ -57,12 +57,12 @@ export default function ImgBox({ img, setChkedList, chkedList }: Props) {
           opacity: 0,
         }}
         animate={{
-          opacity: isHover || check ? 1 : 0,
+          opacity: isHover || chkedList.includes(img) ? 1 : 0,
         }}
       >
         <input
-          checked={check}
-          onChange={() => setChecked((x) => !x)}
+          checked={chkedList.includes(img) ? true : false ?? check}
+          readOnly
           type="checkbox"
           name="imgChk"
           id="imgChk"
