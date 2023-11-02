@@ -6,7 +6,7 @@ type Props = {
   chkedList: string[];
 };
 export default function ImgBox({ img, setChkedList, chkedList }: Props) {
-  const [check, setCheck] = useState(false);
+  const [check, setChecked] = useState(false);
   const [isHover, setHover] = useState(false);
 
   const addTheCheckList = (img: string) => {
@@ -29,7 +29,7 @@ export default function ImgBox({ img, setChkedList, chkedList }: Props) {
     <div className="relative overflow-hidden rounded-lg">
       <motion.img
         onTap={() => {
-          setCheck((x) => !x);
+          setChecked((x) => !x);
           adjustList(img);
         }}
         whileTap={{
@@ -62,7 +62,7 @@ export default function ImgBox({ img, setChkedList, chkedList }: Props) {
       >
         <input
           checked={check}
-          onChange={(x) => setCheck(!x)}
+          onChange={() => setChecked((x) => !x)}
           type="checkbox"
           name="imgChk"
           id="imgChk"
