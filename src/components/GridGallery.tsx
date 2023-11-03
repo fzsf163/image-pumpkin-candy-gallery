@@ -27,7 +27,7 @@ export default function GridGallery() {
           </div>
         }
       >
-        <div className="max-h-screen bg-slate-600 overflow-x-hidden overflow-y-auto  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center items-center w-fit max-w-[80%] mx-auto border border-border-color rounded-lg p-5 gap-4 ">
+        <div className="max-h-screen overflow-x-hidden overflow-y-auto  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center items-center w-fit  mx-auto border border-border-color rounded-lg p-10 gap-4 ">
           {imges.map((img, index) => {
             return (
               <SortableItem key={index}>

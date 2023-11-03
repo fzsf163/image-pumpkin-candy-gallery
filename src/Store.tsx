@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { imgList } from "./assets";
-import { shallow } from "zustand/shallow";
 
 // checkbox
 type CheckBox = {
@@ -24,39 +23,53 @@ type ImgListType = {
   checkedList: string[];
   addCheckedList: (img: string) => void;
   dltFromCheckList: (img: string) => void;
-  getCheckedList: () => void;
   dltFromGallery: () => void;
   setImages: (imgs: string[]) => void;
 };
 export const useImgList = create<ImgListType>()(
-  persist(
+  persist<ImgListType>(
     (set, get) => ({
       imges: imgList,
       checkedList: [],
-      setImages(imgs) {
+      setImages(imgs: string[]) {
         set(() => ({ imges: [...imgs] }));
       },
-      addCheckedList(img) {
+      addCheckedList(img: string) {
         set((state) => ({
           checkedList: Array.from(new Set([...state.checkedList, img])),
-        })),
-          shallow;
+        }));
       },
-      dltFromCheckList(img) {
+      dltFromCheckList(img: string) {
         set({
-          checkedList: get().checkedList.filter((item) => item !== img),
-        }),
-          shallow;
+          checkedList: get().checkedList.filter((item: string) => item !== img),
+        });
       },
-      getCheckedList: () => get().checkedList,
+
       dltFromGallery() {
         const newlist = get().imges.filter(
           (itm) => !get().checkedList.includes(itm)
         );
         set(() => ({ imges: [...newlist], checkedList: [] }));
       },
-      shallow,
     }),
-    { name: "data" }
+    { name: "super-uniqe-name" }
+  )
+);
+
+// get gallery name
+
+type GalleryName = {
+  gName: string;
+  editName: (name: string) => void | undefined;
+};
+export const useGalName = create<GalleryName>()(
+  persist<GalleryName>(
+    (set) => ({
+      gName: "Pumpkin Gallery",
+      editName(name: string) {
+        set(() => ({ gName: name }));
+      },
+    }),
+    { name: "super-gal-name" }
   )
 );

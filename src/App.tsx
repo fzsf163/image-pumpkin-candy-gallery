@@ -1,4 +1,6 @@
 import "./App.css";
+import GalleryName from "./components/GalleryName";
+
 import GridGallery from "./components/GridGallery";
 
 function App() {
@@ -9,7 +11,8 @@ function App() {
         Pumpkin Image Gallery
       </h1>
       {/* render images */}
-      <section>
+      <section className="text-left max-w-[1800px] mx-auto h-full ">
+        <GalleryName></GalleryName>
         <GridGallery></GridGallery>
       </section>
       {/* footer */}
