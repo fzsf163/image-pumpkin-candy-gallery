@@ -1,5 +1,4 @@
 import "./App.css";
-import { imgList } from "./assets";
 import GridGallery from "./components/GridGallery";
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
       </h1>
       {/* render images */}
       <section>
-        <GridGallery imgs={imgList}></GridGallery>
+        <GridGallery></GridGallery>
       </section>
       {/* footer */}
       <footer className="border-t-2 p-6 border-border-color text-2xl bg-gradient-to-r from-blue-600 via-green-500  to-indigo-400 inline-block text-transparent bg-clip-text">

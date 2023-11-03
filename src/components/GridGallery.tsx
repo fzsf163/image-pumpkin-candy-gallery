@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SortableList, { SortableItem } from "react-easy-sort";
 import arrayMove from "array-move";
 import "../App.css";
@@ -8,27 +7,16 @@ import DeleteSvG from "./Delete";
 import ImagesIconSvG from "./ImagesIcon";
 import UploadBtn from "./UploadBtn";
 import { useImgList } from "../Store";
-type Props = {
-  imgs: string[];
-};
 
-export default function GridGallery({ imgs }: Props) {
+export default function GridGallery() {
   // data
   const imges = useImgList((state) => state.imges);
   const markedListLength = useImgList((state) => state.checkedList);
-  const [imgBag, setImgBag] = useState<string[]>(imgs);
-  const [chkedList, setChkedList] = useState<string[]>([]);
-
+  const dltFromGallery = useImgList((state) => state.dltFromGallery);
+  const setImages = useImgList((state) => state.setImages);
   const onSortEnd = (oldIndex: number, newIndex: number) => {
-    setImgBag((imgBag) => arrayMove(imgBag, oldIndex, newIndex));
-  };
-
-  const onDlt = () => {
-    const afterDlt = imgBag.filter((item) => {
-      return !chkedList.includes(item);
-    });
-    setImgBag(afterDlt);
-    setChkedList([]);
+    const newlist = arrayMove(imges, oldIndex, newIndex);
+    setImages(newlist);
   };
 
   return (
@@ -52,7 +40,7 @@ export default function GridGallery({ imgs }: Props) {
             className=" absolute left-1 sm:left-3 md:left-2 lg:-right-[84dvw]  -top-6 px-3 py-2 rounded-lg w-fit mx-auto mb-5  flex  flex-col items-center justify-around gap-5 z-50"
           >
             <motion.span
-              onTap={onDlt}
+              onTap={dltFromGallery}
               initial={{
                 scale: 1,
               }}

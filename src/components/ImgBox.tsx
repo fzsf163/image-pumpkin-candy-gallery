@@ -12,19 +12,8 @@ export default function ImgBox({ img }: Props) {
   const dltFromList = useImgList((state) => state.dltFromCheckList);
   const { checkedList } = useImgList();
 
+  // if we use useState hook it is very easy to control the hover state.
   const [isHover, setHover] = useState(false);
-
-  // const addTheCheckList = (img: string) => {
-  //   chkedList.push(img);
-  //   const arrFiltered = Array.from(new Set(chkedList));
-  //   setChkedList(arrFiltered);
-  // };
-  // const dltTheCheckList = (img: string) => {
-  //   const refinedArr = chkedList.filter((item) => {
-  //     return item !== img;
-  //   });
-  //   setChkedList(refinedArr);
-  // };
 
   const adjustList = (img: string) => {
     const seeExist = checkedList.includes(img);

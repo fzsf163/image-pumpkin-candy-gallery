@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import { imgList } from "./assets";
 import { shallow } from "zustand/shallow";
 
@@ -25,23 +25,38 @@ type ImgListType = {
   addCheckedList: (img: string) => void;
   dltFromCheckList: (img: string) => void;
   getCheckedList: () => void;
+  dltFromGallery: () => void;
+  setImages: (imgs: string[]) => void;
 };
-export const useImgList = create<ImgListType>()((set, get) => ({
-  imges: imgList,
-  checkedList: [],
-  addCheckedList(img) {
-    set((state) => ({
-      checkedList: Array.from(new Set([...state.checkedList, img])),
-    })),
-      shallow;
-  },
-  dltFromCheckList(img) {
-    set({
-      checkedList: get().checkedList.filter((item) => item !== img),
+export const useImgList = create<ImgListType>()(
+  persist(
+    (set, get) => ({
+      imges: imgList,
+      checkedList: [],
+      setImages(imgs) {
+        set(() => ({ imges: [...imgs] }));
+      },
+      addCheckedList(img) {
+        set((state) => ({
+          checkedList: Array.from(new Set([...state.checkedList, img])),
+        })),
+          shallow;
+      },
+      dltFromCheckList(img) {
+        set({
+          checkedList: get().checkedList.filter((item) => item !== img),
+        }),
+          shallow;
+      },
+      getCheckedList: () => get().checkedList,
+      dltFromGallery() {
+        const newlist = get().imges.filter(
+          (itm) => !get().checkedList.includes(itm)
+        );
+        set(() => ({ imges: [...newlist], checkedList: [] }));
+      },
+      shallow,
     }),
-      shallow;
-  },
-  getCheckedList: () => get().checkedList,
-}));
-
-// deleting images from gallery
+    { name: "data" }
+  )
+);
