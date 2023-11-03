@@ -8,7 +8,7 @@ export default function DeleteSvG() {
         viewBox="0 0 24.00 24.00"
         xmlns="http://www.w3.org/2000/svg"
         id="delete"
-        className="icon glyph w-4 h-4 md:w-8 md:h-8 lg:w-10 lg:h-10"
+        className="icon glyph  w-8 h-8 lg:w-10 lg:h-10"
         stroke="#000000"
         strokeWidth="0.00024000000000000003"
       >

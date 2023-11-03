@@ -8,7 +8,7 @@ export default function ImagesIconSvG() {
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
         stroke="#191782"
-        className="w-4 h-4 md:w-8 md:h-8 lg:w-10 lg:h-10"
+        className="w-8 h-8 lg:w-10 lg:h-10"
       >
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g

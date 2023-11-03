@@ -7,14 +7,14 @@ export default function GalleryName() {
   const { gName, editName } = useGalName();
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <div className=" w-[20dvw] m-4  text-lg font-extrabold  outline-none focus-within:border-orange-400 transition-all duration-300 ease-in-out caret-blue-100 flex items-center justify-center gap-2  ">
+    <div className="text-lg font-extrabold  outline-none caret-blue-100 flex items-center justify-center gap-2  ">
       <motion.input
         ref={ref}
         initial={{
           width: 150,
         }}
         whileFocus={{
-          width: 500,
+          width: 300,
         }}
         type="text"
         onInput={(x) => editName(x.currentTarget.value)}

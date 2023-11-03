@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import UploadBtn from "./UploadBtn";
 import { useImgList } from "../Store";
 import HeadBox from "./HeadBox";
+import GalleryName from "./GalleryName";
 
 export default function GridGallery() {
   // data
@@ -16,8 +17,11 @@ export default function GridGallery() {
   };
 
   return (
-    <motion.section layout className="relative">
+    <motion.section layout className="">
+      <div className="flex items-center justify-between w-[50dvw] mb-5 ml-5 gap-5 ">
+      <GalleryName></GalleryName>
       <HeadBox></HeadBox>
+      </div>
       <SortableList
         onSortEnd={onSortEnd}
         draggedItemClassName="select-none pointer-events-none"
@@ -27,14 +31,14 @@ export default function GridGallery() {
           </div>
         }
       >
-        <div className="max-h-screen overflow-x-hidden overflow-y-auto  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center items-center w-fit  mx-auto border border-border-color rounded-lg p-10 gap-4 ">
+        <div className="max-h-screen overflow-x-hidden overflow-y-auto  grid grid-cols-4  xl:grid-cols-5 justify-items-center items-center w-fit  mx-auto border border-border-color rounded-lg p-10 gap-4 ">
           {imges.map((img, index) => {
             return (
               <SortableItem key={index}>
                 <div
                   key={index}
-                  className="lg:w-[15dvw] rounded-md  first:row-span-2 first:col-span-2
-                    first:w-3/4 md:first:w-5/6 lg:first:w-full lg:first:h-full cursor-move"
+                  className="w-[18dvw] md:w-[20dvw] lg:w-[15dvw] rounded-md  first:row-span-2 first:col-span-2
+                    first:w-3/4 lg:first:w-full lg:first:h-full cursor-move"
                 >
                   <ImgBox img={img}></ImgBox>
                 </div>
