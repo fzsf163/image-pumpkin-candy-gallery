@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
+import { useCheckBox } from "../Store";
 import { useState } from "react";
+
 type Props = {
   img: string;
   setChkedList: React.Dispatch<React.SetStateAction<string[]>>;
   chkedList: string[];
 };
+
 export default function ImgBox({ img, setChkedList, chkedList }: Props) {
-  const [check, setChecked] = useState(false);
+  const { checked, changeChecked } = useCheckBox();
   const [isHover, setHover] = useState(false);
 
   const addTheCheckList = (img: string) => {
@@ -29,7 +32,7 @@ export default function ImgBox({ img, setChkedList, chkedList }: Props) {
     <div className="relative overflow-hidden rounded-lg">
       <motion.img
         onTap={() => {
-          setChecked((x) => !x);
+          changeChecked(checked);
           adjustList(img);
         }}
         whileTap={{
@@ -61,7 +64,7 @@ export default function ImgBox({ img, setChkedList, chkedList }: Props) {
         }}
       >
         <input
-          checked={chkedList.includes(img) ? true : false ?? check}
+          checked={chkedList.includes(img) ? true : false}
           readOnly
           type="checkbox"
           name="imgChk"
