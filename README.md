@@ -4,3 +4,4 @@
     framer-motion
     tailwind-css
     react-easy-sort
+    zustand

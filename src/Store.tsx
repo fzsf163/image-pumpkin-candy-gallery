@@ -6,12 +6,14 @@ type CheckBox = {
   changeChecked: (from: boolean) => void;
 };
 
-export const useCheckBox = create<CheckBox>()((set) => ({
-  checked: false,
-  changeChecked(from) {
-    set((state) => ({ checked: state.checked === !from }));
-  },
-}));
+export const useCheckBox = create<CheckBox>()(
+  devtools((set) => ({
+    checked: false,
+    changeChecked(from) {
+      set((state) => ({ checked: state.checked === !from }));
+    },
+  }))
+);
 
 // type HoverStat = {
 //   hovered: boolean;
