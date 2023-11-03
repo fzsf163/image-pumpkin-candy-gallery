@@ -14,9 +14,10 @@ export default function ImgBox({ img }: Props) {
 
   // if we use useState hook it is very easy to control the hover state.
   const [isHover, setHover] = useState(false);
-
+  // check image existence
+  const seeExist = checkedList.includes(img);
+  // adjust list
   const adjustList = (img: string) => {
-    const seeExist = checkedList.includes(img);
     seeExist ? dltFromList(img) : addToList(img);
   };
   return (
@@ -51,11 +52,11 @@ export default function ImgBox({ img }: Props) {
           opacity: 0,
         }}
         animate={{
-          opacity: isHover || checkedList.includes(img) ? 1 : 0,
+          opacity: isHover || seeExist ? 1 : 0,
         }}
       >
         <input
-          checked={checkedList.includes(img) ? true : false}
+          checked={seeExist ? true : false}
           readOnly
           type="checkbox"
           name="imgChk"
