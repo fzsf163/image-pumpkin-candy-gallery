@@ -1,32 +1,34 @@
 import { motion } from "framer-motion";
-import { useCheckBox } from "../Store";
+import { useCheckBox, useImgList } from "../Store";
 import { useState } from "react";
 
 type Props = {
   img: string;
-  setChkedList: React.Dispatch<React.SetStateAction<string[]>>;
-  chkedList: string[];
 };
 
-export default function ImgBox({ img, setChkedList, chkedList }: Props) {
+export default function ImgBox({ img }: Props) {
   const { checked, changeChecked } = useCheckBox();
+  const addToList = useImgList((state) => state.addCheckedList);
+  const dltFromList = useImgList((state) => state.dltFromCheckList);
+  const { checkedList } = useImgList();
+
   const [isHover, setHover] = useState(false);
 
-  const addTheCheckList = (img: string) => {
-    chkedList.push(img);
-    const arrFiltered = Array.from(new Set(chkedList));
-    setChkedList(arrFiltered);
-  };
-  const dltTheCheckList = (img: string) => {
-    const refinedArr = chkedList.filter((item) => {
-      return item !== img;
-    });
-    setChkedList(refinedArr);
-  };
+  // const addTheCheckList = (img: string) => {
+  //   chkedList.push(img);
+  //   const arrFiltered = Array.from(new Set(chkedList));
+  //   setChkedList(arrFiltered);
+  // };
+  // const dltTheCheckList = (img: string) => {
+  //   const refinedArr = chkedList.filter((item) => {
+  //     return item !== img;
+  //   });
+  //   setChkedList(refinedArr);
+  // };
 
   const adjustList = (img: string) => {
-    const seeExist = chkedList.includes(img);
-    seeExist ? dltTheCheckList(img) : addTheCheckList(img);
+    const seeExist = checkedList.includes(img);
+    seeExist ? dltFromList(img) : addToList(img);
   };
   return (
     <div className="relative overflow-hidden rounded-lg">
@@ -60,11 +62,11 @@ export default function ImgBox({ img, setChkedList, chkedList }: Props) {
           opacity: 0,
         }}
         animate={{
-          opacity: isHover || chkedList.includes(img) ? 1 : 0,
+          opacity: isHover || checkedList.includes(img) ? 1 : 0,
         }}
       >
         <input
-          checked={chkedList.includes(img) ? true : false}
+          checked={checkedList.includes(img) ? true : false}
           readOnly
           type="checkbox"
           name="imgChk"
