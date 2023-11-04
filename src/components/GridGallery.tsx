@@ -37,7 +37,7 @@ export default function GridGallery() {
               <SortableItem key={index}>
                 <div
                   key={index}
-                  className="w-[18dvw] md:w-[20dvw] lg:w-[15dvw] rounded-md  first:row-span-2 first:col-span-2
+                  className="w-[18dvw]  md:w-[20dvw] lg:w-[15dvw]  rounded-md  first:row-span-2 first:col-span-2 
                     first:w-3/4 xl:first:w-full lg:first:h-full cursor-move"
                 >
                   <ImgBox img={img}></ImgBox>

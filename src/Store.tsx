@@ -25,6 +25,7 @@ type ImgListType = {
   dltFromCheckList: (img: string) => void;
   dltFromGallery: () => void;
   setImages: (imgs: string[]) => void;
+  addImgToGal: (img: string) => void;
 };
 export const useImgList = create<ImgListType>()(
   persist<ImgListType>(
@@ -33,6 +34,9 @@ export const useImgList = create<ImgListType>()(
       checkedList: [],
       setImages(imgs: string[]) {
         set(() => ({ imges: [...imgs] }));
+      },
+      addImgToGal(img) {
+        set(() => ({ imges: [...get().imges, img] }));
       },
       addCheckedList(img: string) {
         set((state) => ({

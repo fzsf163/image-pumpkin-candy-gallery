@@ -44,7 +44,7 @@ export default function ImgBox({ img }: Props) {
         id="imgContainer"
         src={img}
         alt={img}
-        className="rounded-md object-cover bg-white"
+        className="rounded-md object-cover bg-white h-full w-full"
       ></motion.img>
       <motion.span
         className=" absolute -top-2 -left-3 sm:top-0 sm:left-0 m-4 first:m-4"
