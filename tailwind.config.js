@@ -9,6 +9,9 @@ export default {
         "option-color": "var(--option-color)",
         "border-color": "var(--hover-border)",
       },
+      backgroundImage: {
+        "meshy-pattern": "url(/public/peak_background.svg)",
+      },
     },
   },
   plugins: [],
