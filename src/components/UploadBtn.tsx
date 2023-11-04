@@ -2,7 +2,6 @@ import { useImgList } from "../Store";
 
 export default function UploadBtn() {
   const setToGal = useImgList((state) => state.addImgToGal);
-  // const [file, setFile] = useState<string | null>(null);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
       const file = URL.createObjectURL(e.target.files[0]);
