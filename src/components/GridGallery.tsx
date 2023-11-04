@@ -3,13 +3,16 @@ import arrayMove from "array-move";
 import ImgBox from "./ImgBox";
 import { motion } from "framer-motion";
 import UploadBtn from "./UploadBtn";
-import { useImgList } from "../Store";
+import { useAddToGalleryTemp, useImgList } from "../Store";
 import HeadBox from "./HeadBox";
 import GalleryName from "./GalleryName";
 
 export default function GridGallery() {
   // data
   const imges = useImgList((state) => state.imges);
+  const afterUploadImges = useAddToGalleryTemp((state) => state.imges);
+  // this is so locally uploaded imgs do not cause problem when blob is not found.
+  const totalImg = [...imges, ...afterUploadImges];
   const setImages = useImgList((state) => state.setImages);
   const onSortEnd = (oldIndex: number, newIndex: number) => {
     const newlist = arrayMove(imges, oldIndex, newIndex);
@@ -17,10 +20,10 @@ export default function GridGallery() {
   };
 
   return (
-    <motion.section layout className="">
+    <motion.section layout>
       <div className="flex items-center justify-between w-fit mb-5 ml-5 gap-5">
-      <GalleryName></GalleryName>
-      <HeadBox></HeadBox>
+        <GalleryName></GalleryName>
+        <HeadBox></HeadBox>
       </div>
       <SortableList
         onSortEnd={onSortEnd}
@@ -31,8 +34,8 @@ export default function GridGallery() {
           </div>
         }
       >
-        <div className="max-h-screen overflow-x-hidden overflow-y-auto  grid grid-cols-4  xl:grid-cols-5 justify-items-center items-center w-fit  mx-auto border border-border-color rounded-lg p-10 gap-4 ">
-          {imges.map((img, index) => {
+        <div className="max-h-screen overflow-x-hidden overflow-y-auto  grid grid-cols-4  xl:grid-cols-5 justify-items-center items-center w-fit  mx-auto rounded-lg p-10 gap-4 ">
+          {totalImg.map((img, index) => {
             return (
               <SortableItem key={index}>
                 <div

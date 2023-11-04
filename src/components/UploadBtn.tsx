@@ -1,7 +1,7 @@
-import { useImgList } from "../Store";
+import { useAddToGalleryTemp } from "../Store";
 
 export default function UploadBtn() {
-  const setToGal = useImgList((state) => state.addImgToGal);
+  const { addImgToGal } = useAddToGalleryTemp();
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
       const files = e.target.files;
@@ -9,7 +9,7 @@ export default function UploadBtn() {
       const getALLData = objUrl.map((img) => {
         return URL.createObjectURL(img);
       });
-      setToGal(getALLData);
+      addImgToGal(getALLData);
       console.log(getALLData);
     }
   }

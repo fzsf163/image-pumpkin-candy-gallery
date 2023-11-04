@@ -25,7 +25,6 @@ type ImgListType = {
   dltFromCheckList: (img: string) => void;
   dltFromGallery: () => void;
   setImages: (imgs: string[]) => void;
-  addImgToGal: (img: string[]) => void;
 };
 export const useImgList = create<ImgListType>()(
   persist<ImgListType>(
@@ -34,9 +33,6 @@ export const useImgList = create<ImgListType>()(
       checkedList: [],
       setImages(imgs: string[]) {
         set(() => ({ imges: [...imgs] }));
-      },
-      addImgToGal(img: string[]) {
-        set(() => ({ imges: [...get().imges, ...img] }));
       },
       addCheckedList(img: string) {
         set((state) => ({
@@ -77,3 +73,17 @@ export const useGalName = create<GalleryName>()(
     { name: "super-gal-name" }
   )
 );
+
+// add to gal
+
+type GalBook = {
+  addImgToGal: (imgs: string[]) => void;
+  imges: string[];
+};
+
+export const useAddToGalleryTemp = create<GalBook>()((set, get) => ({
+  imges: [],
+  addImgToGal(imgs: string[]) {
+    set(() => ({ imges: [...get().imges, ...imgs] }));
+  },
+}));
