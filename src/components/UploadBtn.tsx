@@ -4,8 +4,13 @@ export default function UploadBtn() {
   const setToGal = useImgList((state) => state.addImgToGal);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
-      const file = URL.createObjectURL(e.target.files[0]);
-      setToGal(file);
+      const files = e.target.files;
+      const objUrl = Array.from(files);
+      const getALLData = objUrl.map((img) => {
+        return URL.createObjectURL(img);
+      });
+      setToGal(getALLData);
+      console.log(getALLData);
     }
   }
 
