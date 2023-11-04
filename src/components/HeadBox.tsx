@@ -25,7 +25,7 @@ export default function HeadBox() {
             translateY: -50,
             transition: { duration: 0.5 },
           }}
-          className=" rounded-lg w-fit mx-auto  flex   items-center justify-around gap-5 z-50"
+          className=" rounded-lg w-fit  flex   items-center justify-around gap-5"
         >
           <motion.span
             onTap={dltFromGallery}

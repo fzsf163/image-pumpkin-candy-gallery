@@ -7,7 +7,7 @@ export default function GalleryName() {
   const { gName, editName } = useGalName();
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <div className="text-lg font-extrabold  outline-none caret-blue-100 flex items-center justify-center gap-2  ">
+    <div className="text-lg font-extrabold  outline-none caret-blue-100 flex items-center justify-center gap-2">
       <motion.input
         ref={ref}
         initial={{

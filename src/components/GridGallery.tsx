@@ -18,7 +18,7 @@ export default function GridGallery() {
 
   return (
     <motion.section layout className="">
-      <div className="flex items-center justify-between w-[50dvw] mb-5 ml-5 gap-5 ">
+      <div className="flex items-center justify-between w-fit mb-5 ml-5 gap-5">
       <GalleryName></GalleryName>
       <HeadBox></HeadBox>
       </div>
@@ -38,7 +38,7 @@ export default function GridGallery() {
                 <div
                   key={index}
                   className="w-[18dvw] md:w-[20dvw] lg:w-[15dvw] rounded-md  first:row-span-2 first:col-span-2
-                    first:w-3/4 lg:first:w-full lg:first:h-full cursor-move"
+                    first:w-3/4 xl:first:w-full lg:first:h-full cursor-move"
                 >
                   <ImgBox img={img}></ImgBox>
                 </div>

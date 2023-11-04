@@ -47,7 +47,7 @@ export default function ImgBox({ img }: Props) {
         className="rounded-md object-cover bg-white"
       ></motion.img>
       <motion.span
-        className=" absolute top-0 left-0 m-4 first:m-4"
+        className=" absolute -top-2 -left-3 sm:top-0 sm:left-0 m-4 first:m-4"
         initial={{
           opacity: 0,
         }}
@@ -61,7 +61,7 @@ export default function ImgBox({ img }: Props) {
           type="checkbox"
           name="imgChk"
           id="imgChk"
-          className="peer appearance-none shrink-0 w-6 h-6 border-2 rounded-full  border-blue-900  bg-white
+          className="peer appearance-none shrink-0 w-4 h-4 md:w-6 md:h-6 border-2 rounded-full  border-blue-900  bg-white
           focus:outline-none focus:ring-offset-0 focus:ring-1 focus:ring-blue-100
           checked:bg-bg-color checked:border-2
           disabled:border-steel-400 disabled:bg-steel-400"
