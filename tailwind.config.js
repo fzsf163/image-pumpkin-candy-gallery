@@ -10,7 +10,7 @@ export default {
         "border-color": "var(--hover-border)",
       },
       backgroundImage: {
-        "meshy-pattern": "url(/public/peak_background.svg)",
+        "meshy-pattern": "url(/peak_background.svg)",
       },
     },
   },
